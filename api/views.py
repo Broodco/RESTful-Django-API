@@ -9,13 +9,16 @@ from .serializers import ApplicationSerializer
 @api_view(['GET'])
 def api_root(request, format = None):
     return Response({
-        'applications':reverse('application-list',request=request,format=format)
+        'applications':reverse('applications-list',request=request,format=format)
     })
-
-class ApplicationView(viewsets.ModelViewSet):
-    queryset = Application.objects.all()
-    serializer_class = ApplicationSerializer
 
 class CreateListAppViewSet(mixins.CreateModelMixin,mixins.ListModelMixin,viewsets.GenericViewSet):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
+
+    def upload_apk(request):
+        try:
+            file = request.data['file']
+        except KeyError:
+            raise ParseError('Request has no file attached')
+        application = Application.objects.create(application=file)
