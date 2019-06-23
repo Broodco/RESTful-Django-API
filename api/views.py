@@ -13,7 +13,7 @@ def api_root(request, format = None):
     })
 
 class CreateListAppViewSet(mixins.CreateModelMixin,mixins.ListModelMixin,viewsets.GenericViewSet):
-    queryset = Application.objects.all()
+    queryset = Application.objects.get_queryset().order_by("id")
     serializer_class = ApplicationSerializer
 
     def upload_apk(request,serializer):
