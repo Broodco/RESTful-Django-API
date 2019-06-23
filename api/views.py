@@ -16,9 +16,8 @@ class CreateListAppViewSet(mixins.CreateModelMixin,mixins.ListModelMixin,viewset
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
 
-    def upload_apk(request):
+    def upload_apk(request,serializer):
         try:
             file = request.data['file']
         except KeyError:
             raise ParseError('Request has no file attached')
-        application = Application.objects.create(application=file)
