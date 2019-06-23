@@ -1,10 +1,13 @@
 from django.urls import path, include
-from . import views
-from rest_framework import routers
+from .views import CreateListAppViewSet, api_root
 
-router = routers.DefaultRouter()
-router.register('applications',views.ApplicationView)
+applications_list = CreateListAppViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
 
 urlpatterns = [
-    path('',include(router.urls))
+    path('', api_root),
+    path('applications',applications_list, name="applications-list"),
 ]
+
