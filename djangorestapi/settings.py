@@ -25,8 +25,9 @@ SECRET_KEY = 'to@cvnqi*l=xv2fu$tq^_g9^njxgx7id)y^&0(vlix=445ebr3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+if DEBUG:
+    # This value is not safe for production usage. Refer to the Django documentation for more information.
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -77,8 +78,11 @@ WSGI_APPLICATION = 'djangorestapi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
