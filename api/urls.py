@@ -1,7 +1,7 @@
 from django.urls import path, include
-from .views import CreateListAppViewSet, api_root
+from .views import ApplicationsViewSet, api_root
 
-applications_list = CreateListAppViewSet.as_view({
+applications_list = ApplicationsViewSet.as_view({
     'get': 'list',
     'post': 'create'
 })

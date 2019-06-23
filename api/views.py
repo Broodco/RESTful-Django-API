@@ -12,8 +12,8 @@ def api_root(request, format = None):
         'applications':reverse('applications-list',request=request,format=format)
     })
 
-class CreateListAppViewSet(mixins.CreateModelMixin,mixins.ListModelMixin,viewsets.GenericViewSet):
-    queryset = Application.objects.get_queryset().order_by("id")
+class ApplicationsViewSet(mixins.CreateModelMixin,mixins.ListModelMixin,viewsets.GenericViewSet):
+    queryset = Application.objects.all().order_by("id")
     serializer_class = ApplicationSerializer
 
     def upload_apk(request,serializer):
