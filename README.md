@@ -36,5 +36,29 @@ apk file_.
     * a working version of the code
     * bonus: run the Django app in a Docker container with docker-compose
 
-## Content
+## Getting Started
+
+To start the server, make sure _Docker_ and _Docker-Compose_ are installed on your system then use the following command :
+
+> docker-compose up
+
+Then you can access the API through the following url :
+
+> http://localhost:8000/api/applications
+
+The allowed HTTPs requests are : 
+* GET : Get a list of applications
+* POST : Upload an application to the server
+
+### Application
+____
+Represents an APK
+____
+
+##### Attributes :
+* id _(Number)_ *(Read_only)*: unique identifier
+* application _(String)_: APK file path
+* package_name _(String)_ *(Read_only)*: APK file name
+* package_version_code _(String)_ *(Read_only)*: APK version
+
 
